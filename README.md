@@ -2,5 +2,5 @@
 ### Software Architecture: Exton Plantas Exóticas
 
 * **Modules**
-    * **BackEnd:** EJB's providing business logic.
+    * **BackEnd:** EJBs providing business logic.
     * **FrontEnd:** Servlets responsible for user interface.
