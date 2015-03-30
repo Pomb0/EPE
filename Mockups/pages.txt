@@ -1,0 +1,27 @@
+# Shipping
+- Show Shipped orders
+- Show pending orders -> select order
+- OrderInfo (info on the order) -> Mark as Shipped
+    
+
+# Orders
+- Login/Register
+- New Order ->
+    - insert costumer information (First name, Last name, Address, Phone)
+    - list inventory
+    -> select quantity for each item
+    -> submit
+- Show current basket (items and price) -> allow return or submit
+    
+
+# Inventory
+- Login/Register
+- New Item ->
+    - product description
+    - product type
+    - product id
+    - price
+    - quantity
+    -> Submit
+    -> List Inventory
+- Inventory

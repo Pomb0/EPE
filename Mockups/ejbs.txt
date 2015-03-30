@@ -1,0 +1,18 @@
+EJB Login
+- Login
+- Logout
++ Register
+
+EJB Shipping
+- Get shipping orders
+- Get pending orders
+- Get order info
++ Set order as shipped
+
+EJB Inventory
+- Get inventory
++ Set new item
+
+EJB Order
+- Get price for a list of items
++ Set new order
