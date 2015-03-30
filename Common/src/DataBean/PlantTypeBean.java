@@ -13,14 +13,14 @@ public class PlantTypeBean {
 
     }
 
-    private int getId(){
-        return this.id;
+    public String getType() {
+        return type;
     }
 
-    private String getType(){
-        return this.type;
-    }
+    public int getId() {
 
+        return id;
+    }
 
     public PlantTypeBean setId(final int id) {
         this.id = id;
