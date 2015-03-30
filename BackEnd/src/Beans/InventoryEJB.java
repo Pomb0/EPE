@@ -2,10 +2,8 @@ package Beans;
 
 import DataBean.ItemBean;
 import EJBInterface.InventoryEJBInterface;
-import EJBInterface.UserEJBInterface;
 import JPA.Entities.PlantsEntity;
 import JPA.Entities.ProductEntity;
-import JPA.Entities.UserEntity;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -35,15 +33,14 @@ public class InventoryEJB implements InventoryEJBInterface {
             entityManager.persist(newProduct);
             return true;
         }catch (Exception e){
-            while(e.getCause()!=null) e = (Exception) e.getCause();
-
+            e.printStackTrace();
         }
 
         return false;
     }
 
     private PlantsEntity getPlant(String type) {
-        Query query =  entityManager.createQuery("from PlantsEntity u where u.type = :t") ;
+        Query query =  entityManager.createQuery("FROM PlantsEntity u WHERE u.type = :t") ;
         query.setParameter("t", type);
         return (PlantsEntity)query.getSingleResult();
     }
