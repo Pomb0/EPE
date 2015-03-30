@@ -10,16 +10,54 @@ public class ItemBean implements Serializable{
     private String description;
     private String productCode;
 
-    public ItemBean(int id, PlantTypeBean planta , int stock , double price, String description , String productCode){
-        this.id = id;
+    public int getId() {
+        return id;
+    }
+
+    public PlantTypeBean getPlanta() {
+        return planta;
+    }
+
+    public int getStock() {
+        return stock;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public String getProductCode() {
+        return productCode;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public ItemBean setPlanta(final PlantTypeBean planta) {
         this.planta = planta;
+        return this;
+    }
+
+    public ItemBean setStock(final int stock) {
         this.stock = stock;
+        return this;
+    }
+
+    public ItemBean setPrice(final double price) {
         this.price = price;
+        return this;
+    }
+
+    public ItemBean setDescription(final String description) {
         this.description = description;
+        return this;
+    }
+
+    public ItemBean setProductCode(final String productCode) {
         this.productCode = productCode;
+        return this;
     }
 
-    public ItemBean(){
 
-    }
 }

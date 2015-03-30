@@ -1,5 +1,8 @@
 package Servlet;
 
+import EJBInterface.UserEJBInterface;
+
+import javax.ejb.EJB;
 import javax.servlet.http.HttpServlet;
 
 /**
@@ -9,4 +12,6 @@ import javax.servlet.http.HttpServlet;
  * Takes care of session and notifications.
  */
 public abstract class EPEServlet extends HttpServlet{
+	@EJB
+	private UserEJBInterface userEJB;
 }
