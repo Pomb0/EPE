@@ -34,6 +34,11 @@ public class ItemBean implements Serializable{
         return description;
     }
 
+    public ItemBean setId(final int id) {
+        this.id = id;
+        return this;
+    }
+
     public ItemBean setPlanta(final PlantTypeBean planta) {
         this.planta = planta;
         return this;
