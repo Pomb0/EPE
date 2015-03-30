@@ -35,14 +35,4 @@ public class UserBean implements UserBeanInterface {
 	public boolean authenticate(String username, String password) {
 		return false;
 	}
-
-	@Override
-	public boolean createUser(String username, String password) {
-		return false;
-	}
-
-	@Override
-	public boolean authenticate(String username, String password) {
-		return false;
-	}
 }
