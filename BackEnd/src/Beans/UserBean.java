@@ -12,4 +12,14 @@ public class UserBean implements UserBeanInterface {
 	public String test() {
 		return "It really is working :D";
 	}
+
+	@Override
+	public boolean createUser(String username, String password) {
+		return false;
+	}
+
+	@Override
+	public boolean authenticate(String username, String password) {
+		return false;
+	}
 }
