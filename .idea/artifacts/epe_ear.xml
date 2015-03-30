@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="ear" build-on-make="true" name="epe:ear">
+    <output-path>$PROJECT_DIR$/out/artifacts/epe_ear</output-path>
+    <root id="archive" name="epe_ear.ear">
+      <element id="artifact" artifact-name="epe:ear exploded" />
+    </root>
+  </artifact>
+</component>
