@@ -9,7 +9,6 @@ public class ProductEntity implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	/*0: Shrubs , 1 : Trees , 2 : Seeds */
 	@ManyToOne
 	private PlantsEntity planta;
 
