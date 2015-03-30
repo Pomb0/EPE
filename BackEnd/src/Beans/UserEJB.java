@@ -19,8 +19,7 @@ public class UserEJB implements UserEJBInterface {
     @Override
     public UserCreationResult createUser(String username, String password) {
         try {
-            UserEntity newUser = new UserEntity();
-            newUser
+            UserEntity newUser = new UserEntity()
                     .setUsername(username)
                     .setPassword(password);
             entityManager.persist(newUser);
