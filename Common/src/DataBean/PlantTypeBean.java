@@ -21,12 +21,15 @@ public class PlantTypeBean {
         return this.type;
     }
 
-    private void setId(int id){
+
+    public PlantTypeBean setId(final int id) {
         this.id = id;
+        return this;
     }
 
-    private void setType(String type){
+    public PlantTypeBean setType(final String type) {
         this.type = type;
+        return this;
     }
 
 
