@@ -5,7 +5,7 @@ package EJBInterface;
  *
  *
  */
-public interface LogBeanInterface {
+public interface LogEJBInterface {
 	//Defines Loggable actions
 	enum Action{
 		LOGIN(1), LOGOUT(2), ADD_ORDER(3), SHIP_ORDER(4);

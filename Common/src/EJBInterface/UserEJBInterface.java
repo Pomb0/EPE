@@ -11,7 +11,7 @@ import javax.ejb.Remote;
  */
 
 @Remote
-public interface UserBeanInterface {
+public interface UserEJBInterface {
 	// Define the possible responses of user creation
 	enum UserCreationResult{
 		OK(1), DUPLICATE_USER(2), UNKNOWN(4);

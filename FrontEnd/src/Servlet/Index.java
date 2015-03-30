@@ -1,6 +1,6 @@
 package Servlet;
 
-import EJBInterface.UserBeanInterface;
+import EJBInterface.UserEJBInterface;
 
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
@@ -13,7 +13,7 @@ import java.io.IOException;
 
 public class Index extends javax.servlet.http.HttpServlet {
 	@EJB
-	private UserBeanInterface userBean;
+	private UserEJBInterface userEJB;
 
 	protected void doPost(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) throws javax.servlet.ServletException, IOException {
 

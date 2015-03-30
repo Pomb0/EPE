@@ -1,6 +1,6 @@
 package Beans;
 
-import EJBInterface.UserBeanInterface;
+import EJBInterface.UserEJBInterface;
 import JPA.Entities.UserEntity;
 
 import javax.ejb.Stateless;
@@ -9,7 +9,7 @@ import javax.persistence.PersistenceContext;
 
 
 @Stateless
-public class UserBeanEJB implements UserBeanInterface {
+public class UserEJB implements UserEJBInterface {
     @PersistenceContext(name="jpaUnit")
     EntityManager entityManager;
 
