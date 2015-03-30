@@ -1,9 +1,10 @@
 package JPA.Entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-public class ClientEntity {
+public class ClientEntity implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;

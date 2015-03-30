@@ -1,6 +1,7 @@
 package JPA.Entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by Jaime on 27/03/2015.
@@ -8,7 +9,7 @@ import javax.persistence.*;
  */
 
 @Entity
-public class UserEntity {
+public class UserEntity implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;

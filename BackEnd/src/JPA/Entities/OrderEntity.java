@@ -1,11 +1,12 @@
 package JPA.Entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Set;
 
 @Entity
-public class OrderEntity {
+public class OrderEntity implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
