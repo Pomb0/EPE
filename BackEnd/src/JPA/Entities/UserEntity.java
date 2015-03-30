@@ -21,4 +21,27 @@ public class UserEntity implements Serializable{
 	private String password;
 
 
+	public int getId() {
+		return id;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public UserEntity setUsername(final String username) {
+		this.username = username;
+		return this;
+	}
+
+	public UserEntity setPassword(final String password) {
+		this.password = password;
+		return this;
+	}
+
+
 }

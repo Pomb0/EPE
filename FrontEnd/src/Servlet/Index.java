@@ -20,7 +20,7 @@ public class Index extends javax.servlet.http.HttpServlet {
 	}
 
 	protected void doGet(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) throws javax.servlet.ServletException, IOException, IOException {
-		request.setAttribute("test", userBean.test());
+		request.setAttribute("test", "testing");
 		RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/jsp/index.jsp");
 		rd.forward(request, response);
 	}

@@ -29,12 +29,64 @@ public class OrderEntity implements Serializable{
 	@Column(nullable = false)
 	private double totalCost;
 
-	public Integer getId() {
+
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public ClientEntity getClient() {
+		return client;
 	}
+
+	public Set<ProductEntity> getProductToOrder() {
+		return productToOrder;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public Timestamp getDate() {
+		return date;
+	}
+
+	public Boolean isShipped() {
+		return shipped;
+	}
+
+	public double getTotalCost() {
+		return totalCost;
+	}
+
+	public OrderEntity setClient(final ClientEntity client) {
+		this.client = client;
+		return this;
+	}
+
+	public OrderEntity setProductToOrder(final Set<ProductEntity> productToOrder) {
+		this.productToOrder = productToOrder;
+		return this;
+	}
+
+	public OrderEntity setDate(final Timestamp date) {
+		this.date = date;
+		return this;
+	}
+
+	public OrderEntity setUsername(final String username) {
+		this.username = username;
+		return this;
+	}
+
+	public OrderEntity setShipped(final Boolean shipped) {
+		this.shipped = shipped;
+		return this;
+	}
+
+	public OrderEntity setTotalCost(final double totalCost) {
+		this.totalCost = totalCost;
+		return this;
+	}
+
 
 }

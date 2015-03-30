@@ -22,11 +22,46 @@ public class ClientEntity implements Serializable{
 	@Column(nullable = false)
 	private String phoneNumber;
 
-	public Integer getId() {
+
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public String getFirstName() {
+		return firstName;
 	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public ClientEntity setFirstName(final String firstName) {
+		this.firstName = firstName;
+		return this;
+	}
+
+	public ClientEntity setLastName(final String lastName) {
+		this.lastName = lastName;
+		return this;
+	}
+
+	public ClientEntity setAddress(final String address) {
+		this.address = address;
+		return this;
+	}
+
+	public ClientEntity setPhoneNumber(final String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+		return this;
+	}
+
+
 }

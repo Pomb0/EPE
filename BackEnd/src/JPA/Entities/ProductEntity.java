@@ -25,11 +25,55 @@ public class ProductEntity implements Serializable{
 	@Column(nullable = false)
 	private String productCode;
 
+
 	public Integer getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public PlantsEntity getPlanta() {
+		return planta;
 	}
+
+	public int getStock() {
+		return stock;
+	}
+
+	public double getPrice() {
+		return price;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public String getProductCode() {
+		return productCode;
+	}
+
+	public ProductEntity setPlanta(final PlantsEntity planta) {
+		this.planta = planta;
+		return this;
+	}
+
+	public ProductEntity setStock(final int stock) {
+		this.stock = stock;
+		return this;
+	}
+
+	public ProductEntity setPrice(final double price) {
+		this.price = price;
+		return this;
+	}
+
+	public ProductEntity setDescription(final String description) {
+		this.description = description;
+		return this;
+	}
+
+	public ProductEntity setProductCode(final String productCode) {
+		this.productCode = productCode;
+		return this;
+	}
+
+
 }

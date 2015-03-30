@@ -14,7 +14,7 @@ import javax.ejb.Remote;
 public interface UserBeanInterface {
 	// Define the possible responses of user creation
 	enum UserCreationResult{
-		OK(1), DUPLICATE_USER(2), DUPLICATE_MAIL(3), UNKNOWN(4);
+		OK(1), DUPLICATE_USER(2), UNKNOWN(4);
 		private int value;
 		private UserCreationResult(int value) {
 			this.value = value;
