@@ -49,8 +49,9 @@ public class ItemServlet extends EPEServlet{
 				resp.sendRedirect("item");
 				return;
 			}
-		}else{
+		}else{ //List Inventory
 			List<ItemBean> inventory = inventoryEJB.getInventory();
+			req.setAttribute("inventory", inventory);
 			rd = req.getRequestDispatcher("WEB-INF/jsp/inventory.jsp");
 		}
 
