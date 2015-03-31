@@ -37,13 +37,7 @@ public class UserEJB implements UserEJBInterface {
     public UserBean authenticate(String username, String password) {
         UserBean result = getUser(username);
 
-        if (result == null)
-            return null;
-        else if (result.getPassword().equals(password)){
-            return result.setPassword(null);
-        }
-
-
+        if (result!=null && result.getPassword().equals(password)) return result.setPassword(null);
         return null;
     }
 
@@ -53,20 +47,12 @@ public class UserEJB implements UserEJBInterface {
         try {
             Query query = entityManager.createQuery("FROM UserEntity o WHERE o.id = :t");
             query.setParameter("t", id);
-            List<UserEntity> users = query.getResultList();
+            List<UserEntity> users = (List<UserEntity>)query.getResultList();
 
-
-            if(users != null){
-                UserEntity temp = users.get(0);
-                UserBean beanUser = temp.toBean();
-
-                return beanUser;
-            }
-            return null;
+            if(users != null && !users.isEmpty()) return users.get(0).toBean();
         }catch (Exception e){
             e.printStackTrace();
         }
-
         return null;
     }
     @Override
@@ -74,21 +60,12 @@ public class UserEJB implements UserEJBInterface {
         try {
             Query query = entityManager.createQuery("FROM UserEntity o WHERE o.username = :t");
             query.setParameter("t", username);
-            List<UserEntity> users = query.getResultList();
+            List<UserEntity> users = (List<UserEntity>)query.getResultList();
 
-
-            if(users != null){
-                UserEntity temp = users.get(0);
-                UserBean beanUser = temp.toBean();
-
-                return beanUser;
-            }
-            return null;
-
+            if(users != null && !users.isEmpty()) return users.get(0).toBean();
         }catch (Exception e){
             e.printStackTrace();
         }
-
         return null;
     }
 }

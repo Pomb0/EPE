@@ -17,7 +17,7 @@
   <input type="text" class="form-control" placeholder="Username" name="username" required />
   <input type="password" class="form-control" placeholder="Password" name="password" required />
   <button class = "btn btn-lg btn-primary btn-block" type = "submit" value="log" name = "log"> Sign in </button>
-  <a class = "btn btn-lg btn-primary btn-block" type = "submit" value="reg" name = "reg"> Register </a>
+  <button class = "btn btn-lg btn-primary btn-block" type = "submit" value="reg" name = "reg"> Register </button>
 </form>
 
 <jsp:include page="layout/footer.jsp" />
