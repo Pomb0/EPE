@@ -8,6 +8,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import java.util.LinkedList;
 import java.util.List;
 
 
@@ -35,7 +36,7 @@ public class OrderEJB implements OrderEJBInterface {
             Query query = entityManager.createQuery("FROM OrderEntity o WHERE o.shipped = false");
             List<OrderEntity> resultList = query.getResultList();
 
-            List <OrderBean> finalList = null;
+            List <OrderBean> finalList = new LinkedList<>();
 
             for(OrderEntity i : resultList){
                 finalList.add(new OrderBean()
@@ -61,7 +62,7 @@ public class OrderEJB implements OrderEJBInterface {
             Query query = entityManager.createQuery("FROM OrderEntity o WHERE o.shipped = true");
             List<OrderEntity> resultList = query.getResultList();
 
-            List <OrderBean> finalList = null;
+            List <OrderBean> finalList = new LinkedList<>();
 
             for(OrderEntity i : resultList){
                 finalList.add(new OrderBean()

@@ -9,6 +9,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import java.util.LinkedList;
 import java.util.List;
 
 @Stateless
@@ -38,15 +39,17 @@ public class InventoryEJB implements InventoryEJBInterface {
     @Override
 
     public List<ItemBean> getInventory(){
-        List<ItemBean> inventorybeans = null;
+        List<ItemBean> inventorybeans = new LinkedList<ItemBean>();
 
         try{
             Query query = entityManager.createQuery("FROM ProductEntity");
 
             List<ProductEntity> inventory = query.getResultList();
 
-            for(ProductEntity i: inventory){
-                inventorybeans.add(i.getBean());
+            if(inventory!=null) {
+                for (ProductEntity i : inventory) {
+                    inventorybeans.add(i.getBean());
+                }
             }
 
             return inventorybeans;
