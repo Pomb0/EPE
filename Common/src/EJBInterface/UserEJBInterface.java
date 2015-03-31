@@ -33,4 +33,6 @@ public interface UserEJBInterface {
 	UserBean authenticate(String username, String password);
 
 	UserBean getUser(int id);
+
+	UserBean getUser(String username);
 }
