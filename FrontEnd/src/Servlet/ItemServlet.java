@@ -28,7 +28,9 @@ public class ItemServlet extends EPEServlet{
 		HttpSession session = req.getSession();
 		//No paramteres defaults to listing all items.
 		RequestDispatcher rd;
-		if (req.getParameterMap().containsKey("id")) {
+		if(req.getParameterMap().containsKey("add")) { //Add a new Item
+			rd = req.getRequestDispatcher("WEB-INF/jsp/addItem.jsp");
+		}else if (req.getParameterMap().containsKey("id")) {
 			try {
 				int id = Integer.parseInt(req.getParameter("id"));
 				ItemBean item = inventoryEJB.getItemBean(id);

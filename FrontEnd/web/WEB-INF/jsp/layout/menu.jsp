@@ -13,9 +13,9 @@
     <div class="navbar-header">
       <a class="navbar-brand" href="index">Home</a>
       <a class="navbar-brand" href="session">Login</a>
-      <a class="navbar-brand" href="">Shipping</a>
+      <a class="navbar-brand" href="item">Inventory</a>
       <a class="navbar-brand" href="">Orders</a>
-      <a class="navbar-brand" href="">Inventory</a>
+      <a class="navbar-brand" href="">Shipping</a>
     </div>
   </div>
 </nav>
