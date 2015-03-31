@@ -9,6 +9,9 @@
       <element id="directory" name="FrontEnd.war">
         <element id="artifact" artifact-name="FrontEnd:war exploded" />
       </element>
+      <element id="directory" name="lib">
+        <element id="library" level="project" name="JPA 2.1-2.1" />
+      </element>
     </root>
   </artifact>
 </component>

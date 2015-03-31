@@ -1,7 +1,6 @@
 package Beans;
 
 import DataBean.ItemBean;
-import DataBean.PlantTypeBean;
 import EJBInterface.InventoryEJBInterface;
 import JPA.Entities.PlantsEntity;
 import JPA.Entities.ProductEntity;
@@ -21,8 +20,7 @@ public class InventoryEJB implements InventoryEJBInterface {
     public boolean addItem(ItemBean product) {
         try {
             PlantsEntity plant = getPlant(product.getPlanta().getType());
-            if(plant == null)
-                return false;
+            if(plant == null) return false;
 
             ProductEntity newProduct = new ProductEntity().toEntity(product, plant);
             entityManager.persist(newProduct);

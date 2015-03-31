@@ -1,6 +1,7 @@
 package Servlet;
 
 import EJBInterface.UserEJBInterface;
+import Servlet.Notifications.NotificationType;
 
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
@@ -20,7 +21,10 @@ public class IndexServlet extends EPEServlet {
 
 	@Override
 	protected void onGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.setAttribute("test", "testing");
+		addNotification(req.getSession(), NotificationType.ERROR, "THIS IS A TEST ERROR");
+		addNotification(req.getSession(), NotificationType.INFO, "THIS IS A TEST INFORMATION");
+
+		showNotifications(req);
 		RequestDispatcher rd = req.getRequestDispatcher("WEB-INF/jsp/index.jsp");
 		rd.forward(req, resp);
 	}

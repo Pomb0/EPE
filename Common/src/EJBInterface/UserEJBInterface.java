@@ -6,7 +6,7 @@ import javax.ejb.Remote;
  * Created by Jaime on 27/03/2015.
  *
  * This interface defines the methods for user manipulation
- * specificaly creation and login.
+ * specifically creation and login.
  *
  */
 
