@@ -20,8 +20,21 @@ public class OrderEntity implements Serializable{
 	@Column(nullable = false)
 	private String username;
 
+	public OrderEntity setDateOrdered(final Timestamp dateOrdered) {
+		this.dateOrdered = dateOrdered;
+		return this;
+	}
+
+	public OrderEntity setDateShipped(final Timestamp dateShipped) {
+		this.dateShipped = dateShipped;
+		return this;
+	}
+
 	@Column(nullable = false)
-	private Timestamp date;
+	private Timestamp dateOrdered;
+
+	@Column(nullable = false)
+	private Timestamp dateShipped;
 
 	@Column(nullable = false)
 	private Boolean shipped;
@@ -29,6 +42,23 @@ public class OrderEntity implements Serializable{
 	@Column(nullable = false)
 	private double totalCost;
 
+	public OrderEntity setId(final int id) {
+		this.id = id;
+		return this;
+	}
+
+	public Timestamp getDateShipped() {
+		return dateShipped;
+	}
+
+	public Boolean getShipped() {
+		return shipped;
+	}
+
+	public Timestamp getDateOrdered() {
+
+		return dateOrdered;
+	}
 
 	public int getId() {
 		return id;
@@ -46,10 +76,6 @@ public class OrderEntity implements Serializable{
 		return username;
 	}
 
-	public Timestamp getDate() {
-		return date;
-	}
-
 	public Boolean isShipped() {
 		return shipped;
 	}
@@ -65,11 +91,6 @@ public class OrderEntity implements Serializable{
 
 	public OrderEntity setProductToOrder(final Set<ProductEntity> productToOrder) {
 		this.productToOrder = productToOrder;
-		return this;
-	}
-
-	public OrderEntity setDate(final Timestamp date) {
-		this.date = date;
 		return this;
 	}
 

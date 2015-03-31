@@ -1,50 +1,57 @@
 package Beans;
 
+import EJBInterface.LogEJBInterface;
+
+import javax.ejb.Stateless;
+import javax.interceptor.Interceptors;
 import java.io.*;
 
-public class LogEJB {
+@Stateless
+public class LogEJB implements LogEJBInterface{
 
     private final String orderFilePath = "order.txt";
     private final String logFilePath = "Logins.txt";
     private final String shippingFilePath = "shipping.txt";
 
-    private int type;
-    private static FileWriter writer;
+    private static FileWriter writerOrder;
+    private static FileWriter writerLog;
+    private static FileWriter writerShipping;
 
-    private LogEJB(int type){
-        this.type = type;
-        switch (type){
-            case(0): CreateWriter(orderFilePath);
-
-            case(1): CreateWriter(logFilePath);
-
-            case(2): CreateWriter(shippingFilePath);
-
-            default:
-        }
+    public LogEJB(){
+        this.writerOrder = CreateWriter(orderFilePath);
+        this.writerLog = CreateWriter(logFilePath);
+        this.writerShipping = CreateWriter(shippingFilePath);
 
     }
 
-    private void CreateWriter(String path) {
+    @Override
+    public FileWriter CreateWriter(String path) {
         try{
             File file = new File(path);
 
             if(!file.exists()) { file.createNewFile(); }
-            this.writer = new FileWriter(file);
+            return new FileWriter(file);
         }catch (Exception e){
             e.printStackTrace();
         }
+       return null;
     }
 
-    private boolean writeMessage(String message) {
-        try {
-            this.writer.append(message + "\n");
-            this.writer.close();
-            return true;
-        } catch (IOException e) {
-            e.printStackTrace();
+    @Override
+    public void addLog(String log, int type) throws IOException {
+        switch (type){
+            case(0):
+                this.writerLog.append(log + "\n");
+                break;
+            case(1):
+                this.writerLog.append(log + "\n");
+                break;
+            case(2):
+                this.writerShipping.append(log + "\n");
+                break;
+            default:
+                break;
         }
-        return false;
 
     }
 }
