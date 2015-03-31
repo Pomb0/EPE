@@ -41,14 +41,20 @@ public class InventoryEJB implements InventoryEJBInterface {
     public List<ItemBean> getInventory(){
         List<ItemBean> inventorybeans = null;
 
-        Query query = entityManager.createQuery("FROM ProductEntity");
-        List<ProductEntity> inventory = query.getResultList();
+        try{
+            Query query = entityManager.createQuery("FROM ProductEntity");
+            List<ProductEntity> inventory = query.getResultList();
 
-        for(ProductEntity i: inventory){
-            inventorybeans.add(i.getBean());
+            for(ProductEntity i: inventory){
+                inventorybeans.add(i.getBean());
+            }
+
+            return inventorybeans;
+        }catch (Exception e){
+            e.printStackTrace();
         }
 
-        return inventorybeans;
+        return null;
     }
 
     @Override
@@ -68,11 +74,16 @@ public class InventoryEJB implements InventoryEJBInterface {
     }
 
     private PlantsEntity getPlant(String type) {
-        Query query =  entityManager.createQuery("FROM PlantsEntity u WHERE u.type = :t") ;
-        query.setParameter("t", type);
-        return (PlantsEntity)query.getSingleResult();
-    }
+        try{
+            Query query =  entityManager.createQuery("FROM PlantsEntity u WHERE u.type = :t") ;
+            query.setParameter("t", type);
+            return (PlantsEntity)query.getSingleResult();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
 
+    }
 
     public ProductEntity getItemEntity(int id){
         try {
