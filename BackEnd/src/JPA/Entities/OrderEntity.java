@@ -24,16 +24,6 @@ public class OrderEntity implements Serializable {
 	@ManyToOne
 	private UserEntity user;
 
-	public OrderEntity setDateOrdered(final Timestamp dateOrdered) {
-		this.dateOrdered = dateOrdered;
-		return this;
-	}
-
-	public OrderEntity setDateShipped(final Timestamp dateShipped) {
-		this.dateShipped = dateShipped;
-		return this;
-	}
-
 	@Column(nullable = false)
 	private Timestamp dateOrdered;
 
@@ -45,6 +35,16 @@ public class OrderEntity implements Serializable {
 
 	@Column(nullable = false)
 	private double totalCost;
+
+	public OrderEntity setDateOrdered(final Timestamp dateOrdered) {
+		this.dateOrdered = dateOrdered;
+		return this;
+	}
+
+	public OrderEntity setDateShipped(final Timestamp dateShipped) {
+		this.dateShipped = dateShipped;
+		return this;
+	}
 
 	public OrderEntity setId(final int id) {
 		this.id = id;
@@ -127,7 +127,9 @@ public class OrderEntity implements Serializable {
 				.setDateShipped(this.getDateShipped())
 				.setId(this.getId())
 				.setTotalCost(this.totalCost)
-				.setUser(this.getUser().toBean());
+				.setUser(this.getUser().toBean())
+				.setShipped(this.getShipped())
+				.setClient(this.getClient().toBean());
 
 		List<ItemBean> var = new LinkedList<>();
 
@@ -159,7 +161,8 @@ public class OrderEntity implements Serializable {
 				.setDateOrdered(order.getDateOrder())
 				.setDateShipped(order.getDateShipped())
 				.setShipped(order.getShipped())
-				.setUser(user);
+				.setUser(user)
+				;
 		return this;
 
 	}

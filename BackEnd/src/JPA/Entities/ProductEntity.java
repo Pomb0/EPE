@@ -21,6 +21,11 @@ public class ProductEntity implements Serializable{
 	@Column(nullable = false)
 	private double price;
 
+	public ProductEntity setId(final Integer id) {
+		this.id = id;
+		return this;
+	}
+
 	@Column(nullable = false)
 	private String description;
 
@@ -74,6 +79,7 @@ public class ProductEntity implements Serializable{
 		this.setProductCode(bean.getProductCode());
 		this.setStock(bean.getStock());
 		this.setPlanta(plant);
+		this.setId(bean.getId());
 
 		return this;
 	}
