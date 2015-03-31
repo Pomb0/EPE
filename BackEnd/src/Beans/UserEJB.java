@@ -34,16 +34,12 @@ public class UserEJB implements UserEJBInterface {
     //Authenticates a user, returns true if authentication success, else, false.
     @Override
     public UserBean authenticate(String username, String password) {
-        Query q = entityManager.createQuery("from UserEntity u where u.username = :t");
-        q.setParameter("t", username);
-
-        UserEntity result = (UserEntity) q.getSingleResult();
-
+        UserBean result = getUser(username);
 
         if (result == null)
             return null;
         else if (result.getPassword().equals(password)){
-            return result.toBean().setPassword(null);
+            return result.setPassword(null);
         }
 
 
