@@ -6,12 +6,21 @@
 
     <servlet>
         <servlet-name>index</servlet-name>
-        <servlet-class>Servlet.Index</servlet-class>
+        <servlet-class>Servlet.IndexServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>index</servlet-name>
         <url-pattern>/index</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>register</servlet-name>
+        <servlet-class>Servlet.RegisterServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>register</servlet-name>
+        <url-pattern>/register</url-pattern>
+    </servlet-mapping>
+
 
     <welcome-file-list>
         <welcome-file>index</welcome-file>
