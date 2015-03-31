@@ -1,5 +1,6 @@
 package Servlet;
 
+import DataBean.UserBean;
 import EJBInterface.UserEJBInterface;
 import Servlet.Notifications.NotificationItem;
 import Servlet.Notifications.NotificationType;
@@ -37,8 +38,23 @@ public abstract class EPEServlet extends HttpServlet{
    	    return (session.getAttribute(userIdSessionId)!=null);
 	}
 
+	protected Integer getUserId(HttpSession session){
+		return (int) session.getAttribute(userIdSessionId);
+	}
+
 	protected void updateUser(HttpSession session){
 		if(isLogged(session)){
+			Integer id = getUserId(session);
+			if(id == null){
+				logout(session);
+				return;
+			}
+			UserBean user = userEJB.getUser(id);
+			if(user == null){
+				logout(session);
+				return;
+			}
+			session.setAttribute(userBeanSessionId, user);
 		}
 	}
 
@@ -46,6 +62,7 @@ public abstract class EPEServlet extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
 		noCache(resp);
+		if(isLogged(session)) updateUser(session);
 		onGet(req, resp);
 	}
 
@@ -53,6 +70,7 @@ public abstract class EPEServlet extends HttpServlet{
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
 		noCache(resp);
+		if(isLogged(session)) updateUser(session);
 		onPost(req, resp);
 	}
 

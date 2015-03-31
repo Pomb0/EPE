@@ -30,7 +30,7 @@ public interface UserEJBInterface {
 	UserCreationResult createUser(String username, String password);
 
 	//Authenticates a user, returns true if authentication success, else, false.
-	boolean authenticate(String username, String password);
+	UserBean authenticate(String username, String password);
 
 	UserBean getUser(int id);
 }
