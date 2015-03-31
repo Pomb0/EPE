@@ -23,15 +23,20 @@ public class UserBean implements Serializable{
 		return password;
 	}
 
-	public void setId(int id) {
+	public UserBean setId(final int id) {
 		this.id = id;
+		return this;
 	}
 
-	public void setUsername(String username) {
+	public UserBean setUsername(final String username) {
 		this.username = username;
+		return this;
 	}
 
-	public void setPassword(String password) {
+	public UserBean setPassword(final String password) {
 		this.password = password;
+		return this;
 	}
+
+
 }
