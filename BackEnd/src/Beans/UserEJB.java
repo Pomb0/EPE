@@ -52,7 +52,7 @@ public class UserEJB implements UserEJBInterface {
             query.setParameter("t", id);
             UserEntity user = (UserEntity) query.getSingleResult();
 
-            UserBean Beanuser = user.toBean()
+            UserBean Beanuser = user.toBean();
 
             return Beanuser;
 
