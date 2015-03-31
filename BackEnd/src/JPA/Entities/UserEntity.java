@@ -1,5 +1,7 @@
 package JPA.Entities;
 
+import DataBean.UserBean;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -42,6 +44,30 @@ public class UserEntity implements Serializable{
 		this.password = password;
 		return this;
 	}
+	public UserEntity setId(final int id) {
+		this.id = id;
+		return this;
+	}
 
+
+	public UserBean toBean() {
+		UserBean temp = new UserBean()
+				.setPassword(this.getPassword())
+				.setUsername(this.getUsername())
+				.setId(this.getId());
+		return temp;
+
+	}
+
+	public UserEntity toEntity(UserBean user) {
+
+		this.setPassword(user.getPassword());
+		this.setUsername(user.getUsername());
+		this.setId(user.getId());
+		return this;
+
+	}
 
 }
+
+

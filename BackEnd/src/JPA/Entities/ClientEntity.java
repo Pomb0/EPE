@@ -1,5 +1,7 @@
 package JPA.Entities;
 
+import DataBean.ClientBean;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -63,5 +65,24 @@ public class ClientEntity implements Serializable{
 		return this;
 	}
 
+	public ClientBean toBean(){
+		ClientBean bean = new ClientBean()
+				.setAddress(this.getAddress())
+				.setFirstName(this.getFirstName())
+				.setId(this.getId())
+				.setLastName(this.lastName)
+				.setPhoneNumber(this.phoneNumber)
+				;
 
+		return bean;
+	}
+
+	public ClientEntity toEntity(ClientBean client) {
+		this.address = client.getAddress();
+		this.phoneNumber = client.getPhoneNumber();
+		this.lastName = client.getLastName();
+		this.id = client.getId();
+		this.firstName= client.getFirstName();
+		return this;
+	}
 }

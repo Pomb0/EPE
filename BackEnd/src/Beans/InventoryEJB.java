@@ -36,11 +36,13 @@ public class InventoryEJB implements InventoryEJBInterface {
     public ItemBean getItemBean(int id){ return getItemEntity(id).getBean(); }
 
     @Override
+
     public List<ItemBean> getInventory(){
         List<ItemBean> inventorybeans = null;
 
         try{
             Query query = entityManager.createQuery("FROM ProductEntity");
+
             List<ProductEntity> inventory = query.getResultList();
 
             for(ProductEntity i: inventory){

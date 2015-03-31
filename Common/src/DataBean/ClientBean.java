@@ -12,25 +12,31 @@ public class ClientBean {
     private String address;
     private String phoneNumber;
 
-    public void setId(int id) {
+    public ClientBean setId(final int id) {
         this.id = id;
+        return this;
     }
 
-    public void setFirstName(String firstName) {
+    public ClientBean setFirstName(final String firstName) {
         this.firstName = firstName;
+        return this;
     }
 
-    public void setLastName(String lastName) {
+    public ClientBean setLastName(final String lastName) {
         this.lastName = lastName;
+        return this;
     }
 
-    public void setAddress(String address) {
+    public ClientBean setAddress(final String address) {
         this.address = address;
+        return this;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
+    public ClientBean setPhoneNumber(final String phoneNumber) {
         this.phoneNumber = phoneNumber;
+        return this;
     }
+
 
     public int getId() {
 

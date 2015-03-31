@@ -12,7 +12,7 @@ public class OrderBean implements Serializable{
     private int id;
     private ClientBean client;
     private List<ItemBean> itemList;
-    private String username;
+    private UserBean user;
     private Timestamp dateOrder;
     private Timestamp dateShipped;
     private Boolean shipped;
@@ -35,33 +35,46 @@ public class OrderBean implements Serializable{
         for(ItemBean i : this.itemList) this.totalCost+=i.getPrice();
     }
 
-    public void setId(int id) {
+    public OrderBean setId(final int id) {
         this.id = id;
+        return this;
     }
 
-    public void setClient(ClientBean client) {
+    public OrderBean setClient(final ClientBean client) {
         this.client = client;
+        return this;
     }
 
-    public void setItemList(List<ItemBean> itemList) {
+    public OrderBean setItemList(final List<ItemBean> itemList) {
         this.itemList = itemList;
+        return this;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public OrderBean setUser(final UserBean user) {
+        this.user = user;
+        return this;
     }
 
-    public void setShipped(Boolean shipped) {
+    public OrderBean setDateOrder(final Timestamp dateOrder) {
+        this.dateOrder = dateOrder;
+        return this;
+    }
+
+    public OrderBean setDateShipped(final Timestamp dateShipped) {
+        this.dateShipped = dateShipped;
+        return this;
+    }
+
+    public OrderBean setShipped(final Boolean shipped) {
         this.shipped = shipped;
-        java.util.Date date= new java.util.Date();
-
-        if(shipped)
-            this.dateShipped = new Timestamp(date.getTime());
+        return this;
     }
 
-    public void setTotalCost(double totalCost) {
+    public OrderBean setTotalCost(final double totalCost) {
         this.totalCost = totalCost;
+        return this;
     }
+
 
     public int getId() {
 
@@ -76,17 +89,10 @@ public class OrderBean implements Serializable{
         return itemList;
     }
 
-    public String getUsername() {
-        return username;
+    public UserBean getUser() {
+        return user;
     }
 
-    public void setDateOrder(Timestamp dateOrder) {
-        this.dateOrder = dateOrder;
-    }
-
-    public void setDateShipped(Timestamp dateShipped) {
-        this.dateShipped = dateShipped;
-    }
 
     public Timestamp getDateOrder() {
         return dateOrder;
@@ -103,4 +109,6 @@ public class OrderBean implements Serializable{
     public double getTotalCost() {
         return totalCost;
     }
+
+
 }

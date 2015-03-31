@@ -3,7 +3,6 @@ package Beans;
 import EJBInterface.LogEJBInterface;
 
 import javax.ejb.Stateless;
-import javax.interceptor.Interceptors;
 import java.io.*;
 
 @Stateless
@@ -24,7 +23,6 @@ public class LogEJB implements LogEJBInterface{
 
     }
 
-    @Override
     public FileWriter CreateWriter(String path) {
         try{
             File file = new File(path);

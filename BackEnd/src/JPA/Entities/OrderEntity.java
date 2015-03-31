@@ -1,12 +1,16 @@
 package JPA.Entities;
 
+import DataBean.ItemBean;
+import DataBean.OrderBean;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.List;
 import java.util.Set;
 
 @Entity
-public class OrderEntity implements Serializable{
+public class OrderEntity implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -15,10 +19,10 @@ public class OrderEntity implements Serializable{
 	private ClientEntity client;
 
 	@ManyToMany(fetch = FetchType.LAZY)
-	private Set<ProductEntity> productToOrder;
+	private List<ProductEntity> productToOrder;
 
-	@Column(nullable = false)
-	private String username;
+	@ManyToOne
+	private UserEntity user;
 
 	public OrderEntity setDateOrdered(final Timestamp dateOrdered) {
 		this.dateOrdered = dateOrdered;
@@ -68,12 +72,12 @@ public class OrderEntity implements Serializable{
 		return client;
 	}
 
-	public Set<ProductEntity> getProductToOrder() {
+	public List<ProductEntity> getProductToOrder() {
 		return productToOrder;
 	}
 
-	public String getUsername() {
-		return username;
+	public UserEntity getUser() {
+		return user;
 	}
 
 	public Boolean isShipped() {
@@ -89,13 +93,13 @@ public class OrderEntity implements Serializable{
 		return this;
 	}
 
-	public OrderEntity setProductToOrder(final Set<ProductEntity> productToOrder) {
+	public OrderEntity setProductToOrder(final List<ProductEntity> productToOrder) {
 		this.productToOrder = productToOrder;
 		return this;
 	}
 
-	public OrderEntity setUsername(final String username) {
-		this.username = username;
+	public OrderEntity setUsername(final UserEntity user) {
+		this.user = user;
 		return this;
 	}
 
@@ -109,5 +113,55 @@ public class OrderEntity implements Serializable{
 		return this;
 	}
 
+
+	public OrderEntity setUser(final UserEntity user) {
+		this.user = user;
+		return this;
+	}
+
+	public OrderBean toBean() {
+		OrderBean temp = new OrderBean();
+
+		temp.setClient(this.getClient().toBean())
+				.setDateOrder(this.dateOrdered)
+				.setDateShipped(this.getDateShipped())
+				.setId(this.getId())
+				.setTotalCost(this.totalCost)
+				.setUser(this.getUser().toBean());
+
+		List<ItemBean> var = null;
+
+		for(ProductEntity i : this.getProductToOrder()){
+			var.add(i.getBean());
+		}
+
+		temp.setItemList(var);
+		return temp;
+
+	}
+
+	public OrderEntity toEntity(OrderBean order) {
+
+		ClientEntity c = new ClientEntity().toEntity(order.getClient());
+
+		UserEntity user = new UserEntity()
+				.toEntity(order.getUser());
+
+
+		List<ProductEntity> inventory = null;
+
+		for (ItemBean i : order.getItemList()) {
+			inventory.add(new ProductEntity().toEntity(i, new PlantsEntity().setType(i.getPlanta().getType())));
+		}
+
+		this.setProductToOrder(inventory)
+				.setClient(c)
+				.setDateOrdered(order.getDateOrder())
+				.setDateShipped(order.getDateShipped())
+				.setShipped(order.getShipped())
+				.setUser(user);
+		return this;
+
+	}
 
 }
