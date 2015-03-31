@@ -9,7 +9,16 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title></title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Exotic Plants">
+  <meta name="author" content="PowerTrip">
+  <link href="src/Bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="src/css/stylesheet.css" rel="stylesheet">
+  <title>.::EPE::.</title>
 </head>
+
 <body>
