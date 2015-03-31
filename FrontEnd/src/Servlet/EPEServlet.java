@@ -30,6 +30,12 @@ public abstract class EPEServlet extends HttpServlet{
 	@EJB
 	protected UserEJBInterface userEJB;
 
+
+	protected UserBean getUserBean(HttpSession session){
+		if(isLogged(session)) return (UserBean) session.getAttribute(userBeanSessionId);
+		return null;
+	}
+
 	protected void logout(HttpSession session){
 		session.removeAttribute(userIdSessionId);
 	}

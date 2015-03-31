@@ -15,11 +15,7 @@ public class UserEJB implements UserEJBInterface {
     @PersistenceContext(name="jpaUnit")
     EntityManager entityManager;
 
-    public UserCreationResult createUser(String username, String password) {
-
-    }
-
-    //Creates user, returns enum UserCreationResult
+  //Creates user, returns enum UserCreationResult
     @Override
     public UserCreationResult createUser(String username, String password) {
         try {
