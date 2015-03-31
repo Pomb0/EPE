@@ -1,17 +1,13 @@
 package Beans;
 
-import DataBean.OrderBean;
 import DataBean.UserBean;
 import EJBInterface.UserEJBInterface;
-import JPA.Entities.OrderEntity;
 import JPA.Entities.UserEntity;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import java.util.LinkedList;
-import java.util.List;
 
 
 @Stateless
@@ -41,15 +37,46 @@ public class UserEJB implements UserEJBInterface {
 
     //Authenticates a user, returns true if authentication success, else, false.
     @Override
-    public boolean authenticate(String username, String password) {
-        return true;
+    public UserBean authenticate(String username, String password) {
+        Query q = entityManager.createQuery("from UserEntity u where u.username = :t");
+        q.setParameter("t", username);
+
+        UserEntity result = (UserEntity) q.getSingleResult();
+
+
+        if (result == null)
+            return null;
+        else if (result.getPassword().equals(password)){
+            return result.toBean().setPassword(null);
+        }
+
+
+        return null;
     }
+
 
     @Override
     public UserBean getUser(int id) {
         try {
             Query query = entityManager.createQuery("FROM UserEntity o WHERE o.id = :t");
             query.setParameter("t", id);
+            UserEntity user = (UserEntity) query.getSingleResult();
+
+            UserBean Beanuser = user.toBean();
+
+            return Beanuser;
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+    @Override
+    public UserBean getUser(String username){
+        try {
+            Query query = entityManager.createQuery("FROM UserEntity o WHERE o.username = :t");
+            query.setParameter("t", username);
             UserEntity user = (UserEntity) query.getSingleResult();
 
             UserBean Beanuser = user.toBean();
