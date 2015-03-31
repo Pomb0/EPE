@@ -2,9 +2,6 @@ package DataBean;
 
 import javax.persistence.Column;
 
-/**
- * Created by guilherme on 3/31/15.
- */
 public class ClientBean {
     private int id;
     private String firstName;

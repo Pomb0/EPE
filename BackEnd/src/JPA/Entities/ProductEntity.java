@@ -67,6 +67,7 @@ public class ProductEntity implements Serializable{
 
 		return newItem;
 	}
+
 	public ProductEntity toEntity(ItemBean bean, PlantsEntity plant){
 		this.setDescription(bean.getDescription());
 		this.setPrice(bean.getPrice());
