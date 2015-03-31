@@ -1,8 +1,6 @@
 package EJBInterface;
 
 import javax.ejb.Remote;
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 
 /**
@@ -12,6 +10,5 @@ import java.io.IOException;
  */
 @Remote
 public interface LogEJBInterface {
-	FileWriter CreateWriter(String path)throws IOException;
-	void addLog(String log, int type);
+	void addLog(String log, int type) throws IOException;
 }
