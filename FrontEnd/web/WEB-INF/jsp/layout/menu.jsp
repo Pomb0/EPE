@@ -19,6 +19,8 @@
   </div>
 </nav>
 
+<div class="container">
+
 <c:if test="${notifications != null}">
   <div id="notifications">
     <ul>

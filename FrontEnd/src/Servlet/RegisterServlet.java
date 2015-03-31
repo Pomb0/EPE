@@ -28,7 +28,9 @@ public class RegisterServlet extends EPEServlet {
 		String password = req.getParameter("password");
 		String vpassword = req.getParameter("vpassword");
 
-		if( username!=null && password!=null && vpassword!=null ) {
+		if(!password.equals(password)) addNotification(session, NotificationType.ERROR, "Passwords do not match.");
+
+		if( username!=null && password!=null && vpassword!=null && password.equals(password)) {
 			UserEJBInterface.UserCreationResult result = userEJB.createUser(username, password);
 			switch (result) {
 				case DUPLICATE_USER:
@@ -39,11 +41,12 @@ public class RegisterServlet extends EPEServlet {
 					break;
 				case OK:
 					addNotification(session, NotificationType.INFO, "Account created with success.");
-					resp.sendRedirect("login");
+					resp.sendRedirect("index");
 					return;
 			}
 		}
 
+		showNotifications(req);
 		RequestDispatcher rd = req.getRequestDispatcher("WEB-INF/jsp/register.jsp");
 		rd.forward(req, resp);
 	}
