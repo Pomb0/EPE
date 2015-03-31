@@ -28,9 +28,9 @@ public class RegisterServlet extends EPEServlet {
 		String password = req.getParameter("password");
 		String vpassword = req.getParameter("vpassword");
 
-		if(!password.equals(password)) addNotification(session, NotificationType.ERROR, "Passwords do not match.");
+		if( password!=null && vpassword!=null && !password.equals(vpassword)) addNotification(session, NotificationType.ERROR, "Passwords do not match.");
 
-		if( username!=null && password!=null && vpassword!=null && password.equals(password)) {
+		if( username!=null && password!=null && vpassword!=null && password.equals(vpassword)) {
 			UserEJBInterface.UserCreationResult result = userEJB.createUser(username, password);
 			switch (result) {
 				case DUPLICATE_USER:
