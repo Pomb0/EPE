@@ -15,7 +15,7 @@ public class UserEJB implements UserEJBInterface {
     @PersistenceContext(name="jpaUnit")
     EntityManager entityManager;
 
-    //Creates user, returns enum UserCreationResult
+  //Creates user, returns enum UserCreationResult
     @Override
     public UserCreationResult createUser(String username, String password) {
         try {
@@ -56,15 +56,11 @@ public class UserEJB implements UserEJBInterface {
         try {
             Query query = entityManager.createQuery("FROM UserEntity o WHERE o.id = :t");
             query.setParameter("t", id);
-            UserEntity user = (UserEntity) query.getResultList();
+            UserEntity user = (UserEntity) query.getSingleResult();
 
-            if(user != null){
-                UserBean Beanuser = user.toBean();
+            UserBean Beanuser = user.toBean();
 
-                return Beanuser;
-            }
-            else
-                return null;
+            return Beanuser;
 
         }catch (Exception e){
             e.printStackTrace();
@@ -79,13 +75,10 @@ public class UserEJB implements UserEJBInterface {
             query.setParameter("t", username);
             UserEntity user = (UserEntity) query.getSingleResult();
 
-            if(user != null){
-                UserBean Beanuser = user.toBean();
+            UserBean Beanuser = user.toBean();
 
-                return Beanuser;
-            }
-            else
-                return null;
+            return Beanuser;
+
         }catch (Exception e){
             e.printStackTrace();
         }
