@@ -48,7 +48,7 @@ public class UserEJB implements UserEJBInterface {
     @Override
     public UserBean getUser(int id) {
         try {
-            Query query = entityManager.createQuery("FROM OrderEntity o WHERE o.id = :t");
+            Query query = entityManager.createQuery("FROM UserEntity o WHERE o.id = :t");
             query.setParameter("t", id);
             UserEntity user = (UserEntity) query.getSingleResult();
 
