@@ -35,7 +35,6 @@ public class InventoryEJB implements InventoryEJBInterface {
     public ItemBean getItemBean(int id){ return getItemEntity(id).getBean(); }
 
     @Override
-
     public List<ItemBean> getInventory(){
         List<ItemBean> inventoryBeans = new LinkedList<>();
 

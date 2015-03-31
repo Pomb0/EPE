@@ -1,8 +1,8 @@
 package DataBean;
 
-import javax.persistence.Column;
+import java.io.Serializable;
 
-public class ClientBean {
+public class ClientBean implements Serializable {
     private int id;
     private String firstName;
     private String lastName;
