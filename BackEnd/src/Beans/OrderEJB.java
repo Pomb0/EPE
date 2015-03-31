@@ -34,7 +34,7 @@ public class OrderEJB implements OrderEJBInterface {
     public List<OrderBean> getPendingList() {
         try {
             Query query = entityManager.createQuery("FROM OrderEntity o WHERE o.shipped = false");
-            List<OrderEntity> resultList = query.getResultList();
+            List<OrderEntity> resultList = (List<OrderEntity>)query.getResultList();
 
             List <OrderBean> finalList = new LinkedList<>();
 
@@ -60,7 +60,7 @@ public class OrderEJB implements OrderEJBInterface {
     public List<OrderBean> getShippedList(){
         try {
             Query query = entityManager.createQuery("FROM OrderEntity o WHERE o.shipped = true");
-            List<OrderEntity> resultList = query.getResultList();
+            List<OrderEntity> resultList = (List<OrderEntity>)query.getResultList();
 
             List <OrderBean> finalList = new LinkedList<>();
 
@@ -83,16 +83,21 @@ public class OrderEJB implements OrderEJBInterface {
     }
 
     @Override
-    public OrderBean getOrder(int id){return getOrderEntity(id).toBean();}
+    public OrderBean getOrder(int id){
+        OrderEntity temp = getOrderEntity(id);
+
+        if(temp != null)
+                return temp.toBean();
+        return null;
+
+
+    }
 
     private OrderEntity getOrderEntity(int id) {
         try {
             Query query = entityManager.createQuery("FROM OrderEntity o WHERE o.id =:t ");
             query.setParameter("t", id);
-            OrderEntity order = (OrderEntity) query.getSingleResult();
-
-            return order;
-
+            return (OrderEntity) query.getSingleResult();
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -102,7 +107,8 @@ public class OrderEJB implements OrderEJBInterface {
     @Override
     public boolean shipOrder(int id){
         OrderEntity itemToChange = getOrderEntity(id);
-        itemToChange.setShipped(true);
+
+        if(itemToChange!=null)  itemToChange.setShipped(true);
 
         return true;
     }

@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class ItemBean implements Serializable{
     private int id;
-    private PlantTypeBean planta;
+    private PlantTypeBean plantType;
     private int stock;
     private double price;
     private String description;
@@ -14,8 +14,8 @@ public class ItemBean implements Serializable{
         return id;
     }
 
-    public PlantTypeBean getPlanta() {
-        return planta;
+    public PlantTypeBean getPlantType() {
+        return plantType;
     }
 
     public int getStock() {
@@ -39,8 +39,8 @@ public class ItemBean implements Serializable{
         return this;
     }
 
-    public ItemBean setPlanta(final PlantTypeBean planta) {
-        this.planta = planta;
+    public ItemBean setPlantType(final PlantTypeBean plantType) {
+        this.plantType = plantType;
         return this;
     }
 

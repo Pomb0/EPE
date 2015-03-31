@@ -6,8 +6,8 @@ import DataBean.OrderBean;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 public class OrderEntity implements Serializable {
@@ -129,7 +129,7 @@ public class OrderEntity implements Serializable {
 				.setTotalCost(this.totalCost)
 				.setUser(this.getUser().toBean());
 
-		List<ItemBean> var = null;
+		List<ItemBean> var = new LinkedList<>();
 
 		for(ProductEntity i : this.getProductToOrder()){
 			var.add(i.getBean());
@@ -148,10 +148,10 @@ public class OrderEntity implements Serializable {
 				.toEntity(order.getUser());
 
 
-		List<ProductEntity> inventory = null;
+		List<ProductEntity> inventory = new LinkedList<>();
 
 		for (ItemBean i : order.getItemList()) {
-			inventory.add(new ProductEntity().toEntity(i, new PlantsEntity().setType(i.getPlanta().getType())));
+			inventory.add(new ProductEntity().toEntity(i, new PlantsEntity().setType(i.getPlantType().getType())));
 		}
 
 		this.setProductToOrder(inventory)

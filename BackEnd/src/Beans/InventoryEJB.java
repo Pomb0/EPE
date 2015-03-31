@@ -20,15 +20,13 @@ public class InventoryEJB implements InventoryEJBInterface {
     @Override
     public boolean addItem(ItemBean product) {
         try {
-            PlantsEntity plant = getPlant(product.getPlanta().getType());
+            PlantsEntity plant = getPlant(product.getPlantType().getType());
             if(plant == null) return false;
 
             ProductEntity newProduct = new ProductEntity().toEntity(product, plant);
             entityManager.persist(newProduct);
             return true;
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+        }catch (Exception e){ e.printStackTrace(); }
 
         return false;
     }
@@ -39,64 +37,54 @@ public class InventoryEJB implements InventoryEJBInterface {
     @Override
 
     public List<ItemBean> getInventory(){
-        List<ItemBean> inventorybeans = new LinkedList<ItemBean>();
+        List<ItemBean> inventoryBeans = new LinkedList<>();
 
         try{
             Query query = entityManager.createQuery("FROM ProductEntity");
-
-            List<ProductEntity> inventory = query.getResultList();
+            List<ProductEntity> inventory = (List<ProductEntity>)query.getResultList();
 
             if(inventory!=null) {
-                for (ProductEntity i : inventory) {
-                    inventorybeans.add(i.getBean());
-                }
+                for (ProductEntity i : inventory) {     inventoryBeans.add(i.getBean());   }
             }
 
-            return inventorybeans;
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+            return inventoryBeans;
+        }catch (Exception e){ e.printStackTrace(); }
 
         return null;
     }
 
     @Override
     public boolean modifyItem(int id, ItemBean newItem){
-        PlantsEntity plant = getPlant(newItem.getPlanta().getType());
-        if(plant == null)
-            return false;
+        PlantsEntity plant = getPlant(newItem.getPlantType().getType());
+        if(plant == null)  return false;
 
         ProductEntity itemToChange = getItemEntity(id);
 
-        if(itemToChange == null)
-            return false;
-        else
-            itemToChange.toEntity(newItem , plant);
+        if(itemToChange == null) return false;
+        else itemToChange.toEntity(newItem , plant);
 
         return true;
     }
 
     private PlantsEntity getPlant(String type) {
         try{
-            Query query =  entityManager.createQuery("FROM PlantsEntity u WHERE u.type = :t") ;
+            Query query = entityManager.createQuery("FROM PlantsEntity u WHERE u.type = :t") ;
             query.setParameter("t", type);
+
             return (PlantsEntity)query.getSingleResult();
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+
+        }catch (Exception e){ e.printStackTrace(); }
         return null;
 
     }
 
     public ProductEntity getItemEntity(int id){
         try {
-            Query query =  entityManager.createQuery("FROM ProductEntity u WHERE u.id = :t") ;
+            Query query = entityManager.createQuery("FROM ProductEntity u WHERE u.id = :t") ;
             query.setParameter("t", id);
-            ProductEntity product = (ProductEntity) query.getSingleResult();
-            return product;}
-        catch (Exception e){
-            e.printStackTrace();
-        }
+            return  (ProductEntity) query.getSingleResult();
+
+        }catch (Exception e){ e.printStackTrace();}
         return null;
     }
 }
