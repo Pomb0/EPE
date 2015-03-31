@@ -1,5 +1,8 @@
 package JPA.Entities;
 
+import DataBean.ItemBean;
+import DataBean.PlantTypeBean;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -47,6 +50,31 @@ public class ProductEntity implements Serializable{
 
 	public String getProductCode() {
 		return productCode;
+	}
+
+	public ItemBean getBean(){
+		PlantTypeBean plant = new PlantTypeBean()
+				.setType(this.getPlanta().getType())
+				.setId(this.getPlanta().getId());
+
+		ItemBean newItem= new ItemBean()
+				.setDescription(this.getDescription())
+				.setId(this.getId())
+				.setPlanta(plant)
+				.setStock(this.getStock())
+				.setProductCode(this.getProductCode())
+				.setPrice(this.getPrice());
+
+		return newItem;
+	}
+	public ProductEntity toEntity(ItemBean bean, PlantsEntity plant){
+		this.setDescription(bean.getDescription());
+		this.setPrice(bean.getPrice());
+		this.setProductCode(bean.getProductCode());
+		this.setStock(bean.getStock());
+		this.setPlanta(plant);
+
+		return this;
 	}
 
 	public ProductEntity setPlanta(final PlantsEntity planta) {
