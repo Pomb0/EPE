@@ -3,11 +3,13 @@ package Beans;
 import DataBean.OrderBean;
 import EJBInterface.OrderEJBInterface;
 import JPA.Entities.OrderEntity;
+import JPA.Entities.PlantsEntity;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.criteria.Order;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -97,7 +99,11 @@ public class OrderEJB implements OrderEJBInterface {
         try {
             Query query = entityManager.createQuery("FROM OrderEntity o WHERE o.id =:t ");
             query.setParameter("t", id);
-            return (OrderEntity) query.getSingleResult();
+
+            List<OrderEntity> result = (List<OrderEntity>)query.getResultList();
+
+            if (result!=null && !result.isEmpty()){ return result.get(0);  }
+
         }catch (Exception e){
             e.printStackTrace();
         }

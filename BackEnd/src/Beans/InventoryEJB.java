@@ -71,7 +71,9 @@ public class InventoryEJB implements InventoryEJBInterface {
             Query query = entityManager.createQuery("FROM PlantsEntity u WHERE u.type = :t") ;
             query.setParameter("t", type);
 
-            return (PlantsEntity)query.getSingleResult();
+            List<PlantsEntity> result = (List<PlantsEntity>)query.getResultList();
+
+            if (result!=null && !result.isEmpty()){ return result.get(0); }
 
         }catch (Exception e){ e.printStackTrace(); }
         return null;
@@ -82,7 +84,10 @@ public class InventoryEJB implements InventoryEJBInterface {
         try {
             Query query = entityManager.createQuery("FROM ProductEntity u WHERE u.id = :t") ;
             query.setParameter("t", id);
-            return  (ProductEntity) query.getSingleResult();
+
+            List<ProductEntity> result = (List<ProductEntity>)query.getResultList();
+
+            if (result!=null && !result.isEmpty()){ return result.get(0); }
 
         }catch (Exception e){ e.printStackTrace();}
         return null;
