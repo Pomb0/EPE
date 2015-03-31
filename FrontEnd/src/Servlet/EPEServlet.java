@@ -31,6 +31,14 @@ public abstract class EPEServlet extends HttpServlet{
 	protected UserEJBInterface userEJB;
 
 
+	protected boolean logIn(HttpSession session, String username, String password){
+		UserBean bean = userEJB.authenticate(username, password);
+		if(bean==null) return false;
+		session.setAttribute(userIdSessionId, bean.getId());
+		session.setAttribute(userBeanSessionId, bean);
+		return true;
+	}
+
 	protected UserBean getUserBean(HttpSession session){
 		if(isLogged(session)) return (UserBean) session.getAttribute(userBeanSessionId);
 		return null;
