@@ -8,6 +8,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import java.util.List;
 
 
 @Stateless
@@ -52,10 +53,12 @@ public class UserEJB implements UserEJBInterface {
         try {
             Query query = entityManager.createQuery("FROM UserEntity o WHERE o.id = :t");
             query.setParameter("t", id);
-            UserEntity user = (UserEntity) query.getResultList();
+            List<UserEntity> users = query.getResultList();
 
-            if(user != null){
-                UserBean Beanuser = user.toBean();
+
+            if(users != null){
+                UserEntity temp = users.get(0);
+                UserBean Beanuser = temp.toBean();
 
                 return Beanuser;
             }
@@ -71,10 +74,12 @@ public class UserEJB implements UserEJBInterface {
         try {
             Query query = entityManager.createQuery("FROM UserEntity o WHERE o.username = :t");
             query.setParameter("t", username);
-            UserEntity user = (UserEntity) query.getResultList();
+            List<UserEntity> users = query.getResultList();
 
-            if(user != null){
-                UserBean Beanuser = user.toBean();
+
+            if(users != null){
+                UserEntity temp = users.get(0);
+                UserBean Beanuser = temp.toBean();
 
                 return Beanuser;
             }
