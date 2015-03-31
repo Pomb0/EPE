@@ -58,9 +58,9 @@ public class UserEJB implements UserEJBInterface {
 
             if(users != null){
                 UserEntity temp = users.get(0);
-                UserBean Beanuser = temp.toBean();
+                UserBean beanUser = temp.toBean();
 
-                return Beanuser;
+                return beanUser;
             }
             return null;
         }catch (Exception e){
@@ -79,9 +79,9 @@ public class UserEJB implements UserEJBInterface {
 
             if(users != null){
                 UserEntity temp = users.get(0);
-                UserBean Beanuser = temp.toBean();
+                UserBean beanUser = temp.toBean();
 
-                return Beanuser;
+                return beanUser;
             }
             return null;
 
