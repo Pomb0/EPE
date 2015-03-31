@@ -129,7 +129,7 @@ public class OrderEntity implements Serializable {
 				.setTotalCost(this.totalCost)
 				.setUser(this.getUser().toBean())
 				.setShipped(this.getShipped())
-				.setClient(this.getClient().toBean());
+				;
 
 		List<ItemBean> var = new LinkedList<>();
 
@@ -162,7 +162,9 @@ public class OrderEntity implements Serializable {
 				.setDateShipped(order.getDateShipped())
 				.setShipped(order.getShipped())
 				.setUser(user)
-				;
+				.setId(order.getId())
+				.setTotalCost(order.getTotalCost())
+		;
 		return this;
 
 	}
