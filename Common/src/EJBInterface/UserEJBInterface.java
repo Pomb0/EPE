@@ -1,5 +1,7 @@
 package EJBInterface;
 
+import DataBean.UserBean;
+
 import javax.ejb.Remote;
 
 /**
@@ -29,4 +31,6 @@ public interface UserEJBInterface {
 
 	//Authenticates a user, returns true if authentication success, else, false.
 	boolean authenticate(String username, String password);
+
+	UserBean getUser(int id);
 }

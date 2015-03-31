@@ -22,10 +22,25 @@ import java.util.List;
  */
 public abstract class EPEServlet extends HttpServlet{
 	final private String queueSessionId = "_NotificationQueue";
+	final private String userIdSessionId = "_userId";
+	final private String userBeanSessionId = "_UserBean";
 	final protected String notificatioListId = "notifications";
 
 	@EJB
 	protected UserEJBInterface userEJB;
+
+	protected void logout(HttpSession session){
+		session.removeAttribute(userIdSessionId);
+	}
+
+	protected boolean isLogged(HttpSession session){
+   	    return (session.getAttribute(userIdSessionId)!=null);
+	}
+
+	protected void updateUser(HttpSession session){
+		if(isLogged(session)){
+		}
+	}
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -56,7 +71,6 @@ public abstract class EPEServlet extends HttpServlet{
 
 
 	private List<NotificationItem> getNotificationQueue(HttpSession session){
-
 		List<NotificationItem> queue = (List<NotificationItem>)session.getAttribute(queueSessionId);
 		if(queue == null ){
 			queue = new LinkedList<>();

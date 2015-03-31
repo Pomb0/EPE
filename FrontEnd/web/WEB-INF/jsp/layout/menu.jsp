@@ -11,7 +11,7 @@
 <nav class="navbar navbar-fixed-top navbar-inverse" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <a class="navbar-brand" href="login.html" style="Margin-top:7px;"> Login </a>
+      <a class="navbar-brand" href="/session" style="Margin-top:7px;"> Login </a>
       <a class="navbar-brand" href="shipping.html" style="Margin-top:7px;"> Shipping </a>
       <a class="navbar-brand" href="orders.html" style="Margin-top:7px;"> Orders </a>
       <a class="navbar-brand" href="inventory.html" style="Margin-top:7px;"> Inventory </a>
