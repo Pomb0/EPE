@@ -40,7 +40,7 @@ public class InventoryEJB implements InventoryEJBInterface {
         List<ItemBean> inventoryBeans = new LinkedList<>();
 
         try{
-            Query query = entityManager.createQuery("FROM ProductEntity");
+            Query query = entityManager.createQuery("FROM ProductEntity u ORDER BY u.planta.type DESC , u.id DESC");
             List<ProductEntity> inventory = (List<ProductEntity>)query.getResultList();
 
             if(inventory!=null) {

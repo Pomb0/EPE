@@ -60,7 +60,7 @@ public class ProductEntity implements Serializable{
 		ItemBean newItem= new ItemBean()
 				.setDescription(this.getDescription())
 				.setId(this.getId())
-				.setPlanta(plant)
+				.setPlantType(plant)
 				.setStock(this.getStock())
 				.setProductCode(this.getProductCode())
 				.setPrice(this.getPrice());
