@@ -7,8 +7,16 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<nav>
-  MENU
+
+<nav class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="login.html" style="Margin-top:7px;"> Login </a>
+      <a class="navbar-brand" href="shipping.html" style="Margin-top:7px;"> Shipping </a>
+      <a class="navbar-brand" href="orders.html" style="Margin-top:7px;"> Orders </a>
+      <a class="navbar-brand" href="inventory.html" style="Margin-top:7px;"> Inventory </a>
+    </div>
+  </div>
 </nav>
 
 <c:if test="${notifications != null}">

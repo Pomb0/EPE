@@ -6,7 +6,7 @@ import javax.ejb.Remote;
  * Created by Jaime on 27/03/2015.
  *
  * This interface defines the methods for user manipulation
- * specifically creation and login.
+ * specificaly creation and login.
  *
  */
 
@@ -16,7 +16,7 @@ public interface UserEJBInterface {
 	enum UserCreationResult{
 		OK(1), DUPLICATE_USER(2), UNKNOWN(4);
 		private int value;
-		private UserCreationResult(int value) {
+		UserCreationResult(int value) {
 			this.value = value;
 		}
 		public int getValue(){
