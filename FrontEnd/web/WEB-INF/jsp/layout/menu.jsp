@@ -27,7 +27,7 @@
     <a class="navbar-brand" href="client">Clients</a>
 </c:if>
     <a class="navbar-brand" href="item">Inventory</a>
-    <a class="navbar-brand" href="">Shipping</a>
+    <a class="navbar-brand" href="shipping">Shipping</a>
 
     </div>
   </div>

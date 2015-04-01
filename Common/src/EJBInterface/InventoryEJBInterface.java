@@ -3,7 +3,6 @@ package EJBInterface;
 import DataBean.ItemBean;
 
 import javax.ejb.Remote;
-import javax.persistence.Column;
 import java.util.List;
 
 @Remote

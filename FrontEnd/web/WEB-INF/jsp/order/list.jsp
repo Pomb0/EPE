@@ -12,8 +12,41 @@
 <jsp:include page="../layout/menu.jsp" />
 
 
-<c:forEach items="${clientList}" var="item">
-
+<h2 style="margin-top: 40px;">Pending Orders</h2>
+<table style="width:70%; margin-top: 20px;">
+  <tr class="table-title">
+    <td>Order Number:</td>
+    <td>Order Date and Time:</td>
+    <td>Costumer Name:</td>
+  </tr>
+<c:forEach items="${pendingOrders}" var="item">
+  <tr>
+    <td><a href="shipping?id=${item.id}">${item.id}</a></td>
+    <td>${item.dateOrder}</td>
+    <td>${item.client.firstName} ${item.client.lastName}</td>
+  </tr>
 </c:forEach>
+</table>
+
+
+<h2 style="margin-top: 40px;">Shipped Orders</h2>
+<table style="width:70%; margin-top: 20px;">
+  <tr class="table-title">
+    <td>Order Number:</td>
+    <td>Order Date and Time:</td>
+    <td>Costumer Name:</td>
+  </tr>
+  <c:forEach items="${shippedOrders}" var="item">
+    <tr>
+      <td><a href="shipping?id=${item.id}">${item.id}</a></td>
+      <td>${item.dateOrder}</td>
+      <td>${item.client.firstName} ${item.client.lastName}</td>
+    </tr>
+  </c:forEach>
+</table>
+
+
+
+
 
 <jsp:include page="../layout/footer.jsp" />

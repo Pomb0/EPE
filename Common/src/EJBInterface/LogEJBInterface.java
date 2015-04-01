@@ -10,5 +10,15 @@ import java.io.IOException;
  */
 @Remote
 public interface LogEJBInterface {
-	void addLog(String log, int type) throws IOException;
+	enum LogType{
+		SHIPPING(1), SESSION(2), ORDER(3);
+		private int value;
+		LogType(int value) {
+			this.value = value;
+		}
+		public int getValue(){
+			return value;
+		}
+	}
+	void addLog(LogType type, String log) throws IOException;
 }

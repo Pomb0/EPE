@@ -2,16 +2,19 @@ package Beans;
 
 import DataBean.ItemBean;
 import DataBean.OrderBean;
+import EJBInterface.LogEJBInterface;
 import EJBInterface.OrderEJBInterface;
 import JPA.Entities.ClientEntity;
 import JPA.Entities.OrderEntity;
 import JPA.Entities.ProductEntity;
 import JPA.Entities.UserEntity;
 
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.LinkedList;
@@ -22,6 +25,9 @@ import java.util.List;
 public class OrderEJB implements OrderEJBInterface {
     @PersistenceContext(name="jpaUnit")
     EntityManager entityManager;
+
+    @EJB
+    LogEJBInterface logBean;
 
     @Override
     public boolean addOrder(OrderBean order) {
@@ -39,6 +45,11 @@ public class OrderEJB implements OrderEJBInterface {
             newOrder.setUser(getUserEntity(order.getUser().getId()));
 
             entityManager.persist(newOrder);
+
+            logBean.addLog(LogEJBInterface.LogType.ORDER, new Date() + " - Order Id: " + newOrder.getId()
+                + " User: " + newOrder.getUser().getId() + " : " + newOrder.getUser().getUsername()
+            );
+
             return true;
         }catch (Exception e){
             e.printStackTrace();
@@ -60,6 +71,7 @@ public class OrderEJB implements OrderEJBInterface {
                         .setUser(i.getUser().toBean())
                         .setId(i.getId())
                         .setDateOrder(i.getDateOrdered())
+                        .setClient(i.getClient().toBean())
 
                 );
             }
@@ -85,6 +97,7 @@ public class OrderEJB implements OrderEJBInterface {
                 finalList.add(new OrderBean()
                                 .setUser(i.getUser().toBean())
                                 .setId(i.getId())
+                                .setClient(i.getClient().toBean())
                                 .setDateOrder(i.getDateOrdered())
 
                 );
@@ -127,16 +140,21 @@ public class OrderEJB implements OrderEJBInterface {
 
     @Override
     public boolean shipOrder(int id){
-        OrderEntity itemToChange = getOrderEntity(id);
+        try {
+            OrderEntity itemToChange = getOrderEntity(id);
 
-        if(itemToChange==null) return false;
+            if(itemToChange==null) return false;
+            itemToChange
+                    .setDateShipped(new Timestamp(new Date().getTime()))
+                    .setShipped(true);
 
-        itemToChange
-                .setDateShipped(new Timestamp(new Date().getTime()))
-                .setShipped(true);
-
-        entityManager.persist(itemToChange);
-        return true;
+            entityManager.persist(itemToChange);
+            logBean.addLog(LogEJBInterface.LogType.SHIPPING, new Date() + " - Order Id: " + itemToChange.getId());
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     public ProductEntity getItemEntity(int id){

@@ -21,7 +21,6 @@
         <url-pattern>/register</url-pattern>
     </servlet-mapping>
 
-
     <servlet>
         <servlet-name>session</servlet-name>
         <servlet-class>Servlet.SessionServlet</servlet-class>
@@ -58,6 +57,14 @@
         <url-pattern>/order</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>shipping</servlet-name>
+        <servlet-class>Servlet.ShippingServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>shipping</servlet-name>
+        <url-pattern>/shipping</url-pattern>
+    </servlet-mapping>
 
     <welcome-file-list>
         <welcome-file>index</welcome-file>

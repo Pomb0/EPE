@@ -19,6 +19,7 @@
   <tr class="table-title">
     <td>Product Id:</td>
     <td>Product Code:</td>
+    <td>Type:</td>
     <td>Description:</td>
     <td>Price:</td>
     <td>Quantity:</td>
@@ -27,6 +28,7 @@
   <tr>
     <td><a href="item?id=${item.id}">${item.id}</a></td>
     <td><a href="item?id=${item.id}">${item.productCode}</a></td>
+    <td>${item.plantType.type}</td>
     <td>${item.description}</td>
     <td>${item.price}</td>
     <td>${item.stock}</td>

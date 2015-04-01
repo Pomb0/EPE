@@ -23,6 +23,10 @@
       </td>
     </tr>
     <tr>
+      <td>Type:</td>
+      <td>${itemBean.plantType.type}</td>
+    </tr>
+    <tr>
       <td>Description:</td>
       <td><input type="text" class="form-control" name="desc" style="width: 170px" value="${itemBean.description}"></td>
     </tr>
