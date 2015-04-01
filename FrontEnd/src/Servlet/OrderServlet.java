@@ -1,9 +1,12 @@
 package Servlet;
 
 import DataBean.ClientBean;
+import DataBean.ItemBean;
 import DataBean.OrderBean;
+import DataBean.UserBean;
 import EJBInterface.InventoryEJBInterface;
 import EJBInterface.OrderEJBInterface;
+import Servlet.Notifications.NotificationType;
 
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
@@ -12,6 +15,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.Timestamp;
+import java.util.Date;
 
 /**
  * Created by Jaime on 01/04/2015.
@@ -47,16 +52,35 @@ public class OrderServlet extends EPEServlet{
 		HttpSession session = req.getSession();
 		if(!isLogged(session)){resp.sendRedirect("session"); return;} //Refuse Un-logged
 
-		if(req.getParameterMap().containsKey("new")){
+		if(req.getParameterMap().containsKey("save")){
 
 			Integer id = Integer.parseInt(req.getParameter("buyerId"));
 			String productIdList[] = req.getParameterValues("productId");
 			String productUnits[] = req.getParameterValues("units");
 
-			OrderBean orderBean = new OrderBean().setClient(new ClientBean().setId(id));
+			if( productIdList!=null && productUnits!=null) {
+				OrderBean orderBean = new OrderBean()
+						.setShipped(false)
+						.setDateOrder(new Timestamp(new Date().getTime()))
+						.setClient(new ClientBean().setId(id))
+						.setUser(new UserBean().setId(getUserId(session)));
 
+				int i;
+				for (i = 0; i < productIdList.length; i++) {
+					if( Integer.parseInt(productUnits[i]) > 0 ) {
+						orderBean.additem(
+								new ItemBean()
+										.setId(Integer.parseInt(productIdList[i]))
+						);
+					}
+				}
 
+				boolean result = orderEJB.addOrder(orderBean);
+
+				addNotification(session, NotificationType.INFO, "Order created.");
+			}
 
 		}
+		resp.sendRedirect("order");
 	}
 }

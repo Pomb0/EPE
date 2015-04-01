@@ -2,6 +2,7 @@ package DataBean;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -23,11 +24,13 @@ public class OrderBean implements Serializable{
 
         java.util.Date date= new java.util.Date();
         this.dateOrder = new Timestamp(date.getTime());
+        this.itemList = new LinkedList<>();
     }
 
     public void additem(ItemBean newItem){
         this.itemList.add(newItem);
-        totalCost += newItem.getPrice();
+        //TODO FIX TOTAL COST
+        // totalCost += newItem.getPrice();
     }
 
     public void calculateTotal(){

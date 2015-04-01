@@ -27,7 +27,7 @@ public class OrderEntity implements Serializable {
 	@Column(nullable = false)
 	private Timestamp dateOrdered;
 
-	@Column(nullable = false)
+	@Column(nullable = true)
 	private Timestamp dateShipped;
 
 	@Column(nullable = false)
@@ -146,7 +146,6 @@ public class OrderEntity implements Serializable {
 		this.setDateOrdered(order.getDateOrder())
 				.setDateShipped(order.getDateShipped())
 				.setShipped(order.getShipped())
-				.setId(order.getId())
 				.setTotalCost(order.getTotalCost())
 		;
 		return this;

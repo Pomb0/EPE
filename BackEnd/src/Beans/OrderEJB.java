@@ -3,13 +3,17 @@ package Beans;
 import DataBean.ItemBean;
 import DataBean.OrderBean;
 import EJBInterface.OrderEJBInterface;
-import JPA.Entities.*;
+import JPA.Entities.ClientEntity;
+import JPA.Entities.OrderEntity;
+import JPA.Entities.ProductEntity;
+import JPA.Entities.UserEntity;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import javax.persistence.criteria.Order;
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -125,8 +129,13 @@ public class OrderEJB implements OrderEJBInterface {
     public boolean shipOrder(int id){
         OrderEntity itemToChange = getOrderEntity(id);
 
-        if(itemToChange!=null)  itemToChange.setShipped(true);
+        if(itemToChange==null) return false;
 
+        itemToChange
+                .setDateShipped(new Timestamp(new Date().getTime()))
+                .setShipped(true);
+
+        entityManager.persist(itemToChange);
         return true;
     }
 
