@@ -11,11 +11,24 @@
 <nav class="navbar navbar-fixed-top navbar-inverse" role="navigation">
   <div class="container">
     <div class="navbar-header">
+<c:if  test="${userBean != null}">
       <a class="navbar-brand" href="index">Home</a>
-      <a class="navbar-brand" href="session">Login</a>
-      <a class="navbar-brand" href="item">Inventory</a>
+</c:if>
+<c:choose>
+    <c:when test="${userBean == null}">
+        <a class="navbar-brand" href="session">Login</a>
+    </c:when>
+    <c:otherwise>
+        <a class="navbar-brand" href="session?logout">Logout</a>
+    </c:otherwise>
+</c:choose>
+
+<c:if  test="${userBean != null}">
       <a class="navbar-brand" href="">Orders</a>
-      <a class="navbar-brand" href="">Shipping</a>
+</c:if>
+    <a class="navbar-brand" href="item">Inventory</a>
+    <a class="navbar-brand" href="">Shipping</a>
+
     </div>
   </div>
 </nav>

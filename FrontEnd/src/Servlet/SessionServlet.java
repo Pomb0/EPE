@@ -25,6 +25,7 @@ public class SessionServlet extends EPEServlet {
 			return;
 		}
 
+		if(isLogged(session)){resp.sendRedirect("index"); return;} //Refuse logged
 		showNotifications(req);
 		RequestDispatcher rd = req.getRequestDispatcher("WEB-INF/jsp/login.jsp");
 		rd.forward(req, resp);

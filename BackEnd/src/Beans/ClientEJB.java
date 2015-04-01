@@ -12,42 +12,51 @@ import java.util.LinkedList;
 import java.util.List;
 
 @Stateless
-public class ClientEJB implements ClientEJBInterface{
-    @PersistenceContext(name="jpaUnit")
-    EntityManager entityManager;
+public class ClientEJB implements ClientEJBInterface {
+	@PersistenceContext(name = "jpaUnit")
+	EntityManager entityManager;
 
-    @Override
-    public List<ClientBean> getInventory(){
-        List<ClientBean> clientBeans = new LinkedList<>();
+	@Override
+	public List<ClientBean> getInventory() {
+		List<ClientBean> clientBeans = new LinkedList<>();
 
-        try{
-            Query query = entityManager.createQuery("FROM ClientEntity");
-            List<ClientEntity> list = (List<ClientEntity>)query.getResultList();
+		try {
+			Query query = entityManager.createQuery("FROM ClientEntity");
+			List<ClientEntity> list = (List<ClientEntity>) query.getResultList();
 
-            if(list!=null) {
-                for (ClientEntity i : list) {     clientBeans.add(i.toBean());   }
-            }
+			if (list != null) {
+				for (ClientEntity i : list) {
+					clientBeans.add(i.toBean());
+				}
+			}
 
-            return clientBeans;
-        }catch (Exception e){ e.printStackTrace(); }
+			return clientBeans;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
-        return null;
-    }
+		return null;
+	}
 
-    @Override
-    public ClientBean getClient(int id){
-        return getClientEntity(id).toBean();
-    }
-    public ClientEntity getClientEntity(int id){
-        try {
-            Query query = entityManager.createQuery("FROM ClientEntity u WHERE u.id = :t") ;
-            query.setParameter("t", id);
+	@Override
+	public ClientBean getClient(int id) {
+		return getClientEntity(id).toBean();
+	}
 
-            List<ClientEntity> result = (List<ClientEntity>)query.getResultList();
+	public ClientEntity getClientEntity(int id) {
+		try {
+			Query query = entityManager.createQuery("FROM ClientEntity u WHERE u.id = :t");
+			query.setParameter("t", id);
 
-            if (result!=null && !result.isEmpty()){ return result.get(0); }
+			List<ClientEntity> result = (List<ClientEntity>) query.getResultList();
 
-        }catch (Exception e){ e.printStackTrace();}
-        return null;
-    }
+			if (result != null && !result.isEmpty()) {
+				return result.get(0);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 }

@@ -21,11 +21,15 @@ import java.util.List;
  * Application specific Servlet abstraction.
  * Takes care of session and notifications.
  */
+
+//TODO Add a primitive to limit access by ip range or some shit like that :D
+
 public abstract class EPEServlet extends HttpServlet{
 	final private String queueSessionId = "_NotificationQueue";
 	final private String userIdSessionId = "_userId";
 	final private String userBeanSessionId = "_UserBean";
 	final protected String notificatioListId = "notifications";
+	final protected String userAttributeId = "userBean";
 
 	@EJB
 	protected UserEJBInterface userEJB;
@@ -76,7 +80,10 @@ public abstract class EPEServlet extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
 		noCache(resp);
-		if(isLogged(session)) updateUser(session);
+		if(isLogged(session)){
+			updateUser(session);
+			req.setAttribute(userAttributeId, getUserBean(session));
+		}
 		onGet(req, resp);
 	}
 
@@ -84,7 +91,10 @@ public abstract class EPEServlet extends HttpServlet{
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
 		noCache(resp);
-		if(isLogged(session)) updateUser(session);
+		if(isLogged(session)){
+			updateUser(session);
+			req.setAttribute(userAttributeId, getUserBean(session));
+		}
 		onPost(req, resp);
 	}
 
