@@ -1,9 +1,11 @@
 package Beans;
 
+import DataBean.ItemBean;
 import DataBean.OrderBean;
 import EJBInterface.OrderEJBInterface;
 import JPA.Entities.OrderEntity;
 import JPA.Entities.PlantsEntity;
+import JPA.Entities.ProductEntity;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -22,7 +24,18 @@ public class OrderEJB implements OrderEJBInterface {
     @Override
     public boolean addOrder(OrderBean order) {
         try {
-            OrderEntity newOrder = new OrderEntity().toEntity(order);
+            OrderEntity newOrder = new OrderEntity();
+
+            List<ItemBean> productList = order.getItemList();
+            List<ProductEntity> productEntityList = new LinkedList<>();
+
+            for(ItemBean i : productList){
+                productEntityList.add(getItemEntity(i.getId()));
+            }
+
+            newOrder.toEntity(order);
+            newOrder.setProductToOrder(productEntityList);
+
             entityManager.persist(newOrder);
             return true;
         }catch (Exception e){
@@ -117,5 +130,18 @@ public class OrderEJB implements OrderEJBInterface {
         if(itemToChange!=null)  itemToChange.setShipped(true);
 
         return true;
+    }
+
+    public ProductEntity getItemEntity(int id){
+        try {
+            Query query = entityManager.createQuery("FROM ProductEntity u WHERE u.id = :t") ;
+            query.setParameter("t", id);
+
+            List<ProductEntity> result = (List<ProductEntity>)query.getResultList();
+
+            if (result!=null && !result.isEmpty()){ return result.get(0); }
+
+        }catch (Exception e){ e.printStackTrace();}
+        return null;
     }
 }
