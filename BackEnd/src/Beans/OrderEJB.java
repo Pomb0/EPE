@@ -25,11 +25,9 @@ public class OrderEJB implements OrderEJBInterface {
     public boolean addOrder(OrderBean order) {
         try {
             OrderEntity newOrder = new OrderEntity();
-
-            List<ItemBean> productList = order.getItemList();
             List<ProductEntity> productEntityList = new LinkedList<>();
 
-            for(ItemBean i : productList){
+            for(ItemBean i : order.getItemList()){
                 productEntityList.add(getItemEntity(i.getId()));
             }
 
