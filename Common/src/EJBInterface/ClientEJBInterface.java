@@ -9,4 +9,5 @@ import java.util.List;
 public interface ClientEJBInterface {
     List<ClientBean> getInventory();
     ClientBean getClient(int id);
+    boolean addClient(ClientBean client);
 }

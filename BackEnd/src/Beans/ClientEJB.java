@@ -40,7 +40,9 @@ public class ClientEJB implements ClientEJBInterface {
 
 	@Override
 	public ClientBean getClient(int id) {
-		return getClientEntity(id).toBean();
+		ClientEntity clientEntity = getClientEntity(id);
+		if(clientEntity!=null) return clientEntity.toBean();
+		return null;
 	}
 
 	public ClientEntity getClientEntity(int id) {
@@ -58,5 +60,15 @@ public class ClientEJB implements ClientEJBInterface {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	@Override
+	public boolean addClient(ClientBean client) {
+		try{
+			entityManager.persist(new ClientEntity().toEntity(client));
+			return true;
+		}catch(Exception e){
+			return false;
+		}
 	}
 }

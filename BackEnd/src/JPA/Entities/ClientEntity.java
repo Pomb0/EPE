@@ -9,7 +9,7 @@ import java.io.Serializable;
 public class ClientEntity implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 
 
 	@Column(nullable = false)
@@ -25,7 +25,7 @@ public class ClientEntity implements Serializable{
 	private String phoneNumber;
 
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 

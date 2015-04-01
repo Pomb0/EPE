@@ -35,7 +35,11 @@ public class InventoryEJB implements InventoryEJBInterface {
     }
 
     @Override
-    public ItemBean getItemBean(int id){ return getItemEntity(id).getBean(); }
+    public ItemBean getItemBean(int id){
+        ProductEntity productEntity = getItemEntity(id);
+        if (productEntity!=null)return productEntity.getBean();
+        return null;
+    }
 
     @Override
     public List<ItemBean> getInventory(){

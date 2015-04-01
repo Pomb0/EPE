@@ -40,6 +40,15 @@
         <url-pattern>/item</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>client</servlet-name>
+        <servlet-class>Servlet.ClientServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>client</servlet-name>
+        <url-pattern>/client</url-pattern>
+    </servlet-mapping>
+
 
     <welcome-file-list>
         <welcome-file>index</welcome-file>
