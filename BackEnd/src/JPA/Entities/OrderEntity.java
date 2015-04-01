@@ -143,25 +143,9 @@ public class OrderEntity implements Serializable {
 	}
 
 	public OrderEntity toEntity(OrderBean order) {
-
-		ClientEntity c = new ClientEntity().toEntity(order.getClient());
-
-		UserEntity user = new UserEntity()
-				.toEntity(order.getUser());
-
-
-		List<ProductEntity> inventory = new LinkedList<>();
-
-		for (ItemBean i : order.getItemList()) {
-			inventory.add(new ProductEntity().toEntity(i, new PlantsEntity().setType(i.getPlantType().getType())));
-		}
-
-		this.setProductToOrder(inventory)
-				.setClient(c)
-				.setDateOrdered(order.getDateOrder())
+		this.setDateOrdered(order.getDateOrder())
 				.setDateShipped(order.getDateShipped())
 				.setShipped(order.getShipped())
-				.setUser(user)
 				.setId(order.getId())
 				.setTotalCost(order.getTotalCost())
 		;
