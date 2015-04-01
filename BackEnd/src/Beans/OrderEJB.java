@@ -3,9 +3,7 @@ package Beans;
 import DataBean.ItemBean;
 import DataBean.OrderBean;
 import EJBInterface.OrderEJBInterface;
-import JPA.Entities.OrderEntity;
-import JPA.Entities.PlantsEntity;
-import JPA.Entities.ProductEntity;
+import JPA.Entities.*;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -33,6 +31,8 @@ public class OrderEJB implements OrderEJBInterface {
 
             newOrder.toEntity(order);
             newOrder.setProductToOrder(productEntityList);
+            newOrder.setClient(getClientEntity(order.getClient().getId()));
+            newOrder.setUser(getUserEntity(order.getUser().getId()));
 
             entityManager.persist(newOrder);
             return true;
@@ -142,4 +142,38 @@ public class OrderEJB implements OrderEJBInterface {
         }catch (Exception e){ e.printStackTrace();}
         return null;
     }
+    public ClientEntity getClientEntity(int id) {
+        try {
+            Query query = entityManager.createQuery("FROM ClientEntity u WHERE u.id = :t");
+            query.setParameter("t", id);
+
+            List<ClientEntity> result = (List<ClientEntity>) query.getResultList();
+
+            if (result != null && !result.isEmpty()) {
+                return result.get(0);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public UserEntity getUserEntity(int id) {
+        try {
+            Query query = entityManager.createQuery("FROM UserEntity u WHERE u.id = :t");
+            query.setParameter("t", id);
+
+            List<UserEntity> result = (List<UserEntity>) query.getResultList();
+
+            if (result != null && !result.isEmpty()) {
+                return result.get(0);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 }

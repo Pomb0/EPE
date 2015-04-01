@@ -2,8 +2,10 @@ package Beans;
 
 import DataBean.ItemBean;
 import EJBInterface.InventoryEJBInterface;
+import JPA.Entities.ClientEntity;
 import JPA.Entities.PlantsEntity;
 import JPA.Entities.ProductEntity;
+import JPA.Entities.UserEntity;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -98,4 +100,5 @@ public class InventoryEJB implements InventoryEJBInterface {
         }catch (Exception e){ e.printStackTrace();}
         return null;
     }
+
 }
