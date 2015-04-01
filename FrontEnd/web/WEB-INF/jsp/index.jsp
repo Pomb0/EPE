@@ -10,5 +10,5 @@
 
 <jsp:include page="layout/top.jsp" />
 <jsp:include page="layout/menu.jsp" />
-    <h1>${test}</h1>
+    <h1 class="center">Welcome ${userBean.username}</h1>
 <jsp:include page="layout/footer.jsp" />

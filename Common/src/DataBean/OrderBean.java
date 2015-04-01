@@ -9,7 +9,7 @@ import java.util.List;
  *
  */
 public class OrderBean implements Serializable{
-    private int id;
+    private Integer id;
     private ClientBean client;
     private List<ItemBean> itemList;
     private UserBean user;
@@ -35,7 +35,7 @@ public class OrderBean implements Serializable{
         for(ItemBean i : this.itemList) this.totalCost+=i.getPrice();
     }
 
-    public OrderBean setId(final int id) {
+    public OrderBean setId(final Integer id) {
         this.id = id;
         return this;
     }
@@ -76,7 +76,7 @@ public class OrderBean implements Serializable{
     }
 
 
-    public int getId() {
+    public Integer getId() {
 
         return id;
     }

@@ -34,7 +34,6 @@ public abstract class EPEServlet extends HttpServlet{
 	@EJB
 	protected UserEJBInterface userEJB;
 
-
 	protected boolean logIn(HttpSession session, String username, String password){
 		UserBean bean = userEJB.authenticate(username, password);
 		if(bean==null) return false;
@@ -103,14 +102,11 @@ public abstract class EPEServlet extends HttpServlet{
 		response.setHeader("Pragma", "no-cache");
 	}
 
-
 	protected void addNotification(HttpSession session, NotificationType type, String notification){
 		List<NotificationItem> queue = getNotificationQueue(session);
 		NotificationItem notificationItem = new NotificationItem(type, notification);
 		queue.add(notificationItem);
 	}
-
-
 
 	private List<NotificationItem> getNotificationQueue(HttpSession session){
 		List<NotificationItem> queue = (List<NotificationItem>)session.getAttribute(queueSessionId);
@@ -140,10 +136,7 @@ public abstract class EPEServlet extends HttpServlet{
 		}
 	}
 
-
 	//Stuff to be overridden.
 	protected abstract void onGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException;
 	protected abstract void onPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException;
-
 }
-

@@ -1,7 +1,6 @@
 package Servlet;
 
 import EJBInterface.UserEJBInterface;
-import Servlet.Notifications.NotificationType;
 
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
@@ -25,9 +24,6 @@ public class IndexServlet extends EPEServlet {
 		HttpSession session = req.getSession();
 
 		if(!isLogged(session)){resp.sendRedirect("session"); return;} //Refuse Un-logged
-
-		addNotification(req.getSession(), NotificationType.ERROR, "THIS IS A TEST ERROR");
-		addNotification(req.getSession(), NotificationType.INFO, "THIS IS A TEST INFORMATION " + getUserBean(session).getUsername());
 
 		showNotifications(req);
 		RequestDispatcher rd = req.getRequestDispatcher("WEB-INF/jsp/index.jsp");

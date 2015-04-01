@@ -7,11 +7,11 @@ import java.io.Serializable;
  *
  */
 public class UserBean implements Serializable{
-	private int id;
+	private Integer id;
 	private String username;
 	private String password;
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
@@ -23,7 +23,7 @@ public class UserBean implements Serializable{
 		return password;
 	}
 
-	public UserBean setId(final int id) {
+	public UserBean setId(final Integer id) {
 		this.id = id;
 		return this;
 	}

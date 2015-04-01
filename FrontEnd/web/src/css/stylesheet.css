@@ -133,3 +133,7 @@ body {
 #notifications ul li.INFO {
     color: #070;
 }
+
+.center{
+    text-align:center;
+}

@@ -3,13 +3,13 @@ package DataBean;
 import java.io.Serializable;
 
 public class ClientBean implements Serializable {
-    private int id;
+    private Integer id;
     private String firstName;
     private String lastName;
     private String address;
     private String phoneNumber;
 
-    public ClientBean setId(final int id) {
+    public ClientBean setId(Integer id) {
         this.id = id;
         return this;
     }
@@ -35,7 +35,7 @@ public class ClientBean implements Serializable {
     }
 
 
-    public int getId() {
+    public Integer getId() {
 
         return id;
     }

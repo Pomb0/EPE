@@ -1,10 +1,12 @@
 package DataBean;
 
-public class PlantTypeBean {
-    private int id;
+import java.io.Serializable;
+
+public class PlantTypeBean implements Serializable {
+    private Integer id;
     private String type;
 
-    public PlantTypeBean(int id , String type){
+    public PlantTypeBean(Integer id , String type){
         this.id = id;
         this.type = type;
     }
@@ -17,12 +19,12 @@ public class PlantTypeBean {
         return type;
     }
 
-    public int getId() {
+    public Integer getId() {
 
         return id;
     }
 
-    public PlantTypeBean setId(final int id) {
+    public PlantTypeBean setId(final Integer id) {
         this.id = id;
         return this;
     }

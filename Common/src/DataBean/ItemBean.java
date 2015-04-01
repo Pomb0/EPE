@@ -3,14 +3,14 @@ package DataBean;
 import java.io.Serializable;
 
 public class ItemBean implements Serializable{
-    private int id;
+    private Integer id;
     private PlantTypeBean plantType;
     private int stock;
     private double price;
     private String description;
     private String productCode;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -34,7 +34,7 @@ public class ItemBean implements Serializable{
         return description;
     }
 
-    public ItemBean setId(final int id) {
+    public ItemBean setId(Integer id) {
         this.id = id;
         return this;
     }
