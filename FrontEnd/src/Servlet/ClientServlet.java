@@ -26,6 +26,8 @@ public class ClientServlet extends EPEServlet{
 	protected void onGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
 
+		if(!isLogged(session)){resp.sendRedirect("session"); return;} //Refuse Un-logged
+
 		RequestDispatcher rd;
 
 		if(req.getParameterMap().containsKey("add")){ //Add a new One
@@ -37,12 +39,12 @@ public class ClientServlet extends EPEServlet{
 				if(clientBean!=null) {
 					req.setAttribute("client", clientBean);
 					rd = req.getRequestDispatcher("WEB-INF/jsp/client/view.jsp");
-				}else{
+				} else {
 					addNotification(session, NotificationType.ERROR, "The client you tried to view does not exist.");
 					resp.sendRedirect("client");
 					return;
 				}
-			}catch(Exception e){
+			} catch (Exception e) {
 				addNotification(session, NotificationType.ERROR, "The client you tried to view does not exist.");
 				resp.sendRedirect("client");
 				return;
@@ -61,6 +63,8 @@ public class ClientServlet extends EPEServlet{
 	@Override
 	protected void onPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
+
+		if(!isLogged(session)){resp.sendRedirect("session"); return;} //Refuse Un-logged
 
 		if( req.getParameterMap().containsKey("save") ){
 			String firstName = req.getParameter("firstName");

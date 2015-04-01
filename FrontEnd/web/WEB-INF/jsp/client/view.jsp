@@ -36,9 +36,7 @@
   </tr>
 </table>
 <br>
-<form action="order" method="post" class="form" role="form">
-  <input type="hidden" name="clientId" value="${client.id}">
-  <button type="submit" class="btn btn-lg btn-primary btn-block" name="new" style="width:150px; margin-top:30px;">New Order</button>
-</form>
+<a class="btn btn-lg btn-primary btn-block" name="new" style="width:150px; margin-top:30px;" href="order?buyerId=${client.id}">New Order</a>
+
 
 <jsp:include page="../layout/footer.jsp" />

@@ -25,7 +25,6 @@
 
 <c:if  test="${userBean != null}">
     <a class="navbar-brand" href="client">Clients</a>
-    <a class="navbar-brand" href="">Orders</a>
 </c:if>
     <a class="navbar-brand" href="item">Inventory</a>
     <a class="navbar-brand" href="">Shipping</a>

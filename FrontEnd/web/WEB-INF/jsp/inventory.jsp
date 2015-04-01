@@ -13,7 +13,7 @@
 
 <h2 style="margin-top: 40px;">Inventory</h2>
 
-<h3 style="margin-top: 40px;">Trees</h3>
+<!--<h3 style="margin-top: 40px;">Trees</h3>-->
 
 <table style="width:100%">
   <tr class="table-title">

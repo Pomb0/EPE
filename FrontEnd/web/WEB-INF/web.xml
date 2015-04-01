@@ -49,6 +49,15 @@
         <url-pattern>/client</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>order</servlet-name>
+        <servlet-class>Servlet.OrderServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>order</servlet-name>
+        <url-pattern>/order</url-pattern>
+    </servlet-mapping>
+
 
     <welcome-file-list>
         <welcome-file>index</welcome-file>
